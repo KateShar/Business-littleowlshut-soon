@@ -114,6 +114,7 @@ footer a{color:var(--accent)}
 img.slide{width:100%;height:100%;object-fit:cover;padding:0;display:block;background:var(--band)}
 .toast{position:fixed;left:50%;bottom:92px;transform:translateX(-50%);background:var(--ink);color:var(--ground);padding:10px 16px;border-radius:10px;font-size:.9rem;max-width:min(92vw,460px);z-index:20;box-shadow:0 4px 14px rgba(0,0,0,.2)}
 .sheet{z-index:30}
+.tag.ask{background:var(--band);font-weight:700}
 </style>
 
 </head>
@@ -180,17 +181,26 @@ const grid = $('grid');
 
 function toast(msg){ const t = $('toast'); t.textContent = msg; t.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => t.hidden = true, 4500); }
 
+function tagText(p){
+  if (!state.liked.has(p.id)) return 'Tap ❤️ if you want it';
+  const r = rankOf(p.id);
+  return count(p) >= GOAL ? 'In the queue · #' + r : '#' + r + ' most wanted';
+}
 function bodyHTML(p){
+  const liked = state.liked.has(p.id);
   const n = count(p), done = n >= GOAL, rank = rankOf(p.id), pct = Math.min(100, Math.round(n / GOAL * 100));
   const msg = done ? `<b>Goal reached!</b> It's in the publishing queue at <b>#${rank}</b>. More hearts move it up, so it's published sooner.`
                    : `<b>${GOAL - n} more heart${GOAL - n === 1 ? '' : 's'}</b> needed to be considered for publishing (${n} of ${GOAL} hearts on this site). The more hearts, the sooner it's published.`;
   const sub = [p.craft && p.craft[0].toUpperCase() + p.craft.slice(1), p.designer && 'by ' + p.designer].filter(Boolean).join(' · ');
+  const meter = liked
+    ? `<div class="meter ${done ? 'done' : ''}"><div class="track"><div class="fill" style="width:${pct}%"></div></div><p>${msg}</p></div>`
+    : `<div class="meter"><p>Every heart counts: the patterns with the most hearts are published first. You'll see how many hearts it has after you give yours.</p></div>`;
   return `
-      <span class="tag ${done ? 'ok' : ''}">${done ? 'In the queue · #' + rank : '#' + rank + ' most wanted'}</span>
+      <span class="tag ${liked && done ? 'ok' : ''} ${liked ? '' : 'ask'}">${tagText(p)}</span>
       <div class="title"><h2>${esc(p.name)}<small>${esc(sub)}</small></h2>
-        <button class="heart" data-like="${p.id}" aria-pressed="${state.liked.has(p.id)}" aria-label="Heart ${esc(p.name)}, ${n} hearts">${heartSvg}<span>${n}</span></button></div>
-      ${p.social ? `<p class="social">Also ❤️ ${p.social} on Instagram &amp; Facebook (not counted towards the goal)</p>` : ''}
-      <div class="meter ${done ? 'done' : ''}"><div class="track"><div class="fill" style="width:${pct}%"></div></div><p>${msg}</p></div>
+        <button class="heart" data-like="${p.id}" aria-pressed="${liked}" aria-label="${liked ? 'Remove your heart from' : 'Heart'} ${esc(p.name)}">${heartSvg}${liked ? `<span>${n}</span>` : ''}</button></div>
+      ${liked && p.social ? `<p class="social">Also ❤️ ${p.social} on Instagram &amp; Facebook (not counted towards the goal)</p>` : ''}
+      ${meter}
       <label class="notify"><input type="checkbox" id="w-${p.id}" data-watch="${p.id}" ${state.watching.has(p.id) ? 'checked' : ''}> Email me when it's out</label>`;
 }
 function cardHTML(p){
@@ -211,7 +221,7 @@ function refreshCard(id){
   if (!el) return;
   el.classList.toggle('watching', state.watching.has(id));
   el.querySelector('.body').innerHTML = bodyHTML(p);
-  grid.querySelectorAll('.card').forEach(c => { const pp = PATTERNS.find(x => x.id === c.dataset.id), t = c.querySelector('.tag'), r = rankOf(pp.id), d = count(pp) >= GOAL; if (t) { t.textContent = d ? 'In the queue · #' + r : '#' + r + ' most wanted'; t.classList.toggle('ok', d); } });
+  grid.querySelectorAll('.card').forEach(c => { const pp = PATTERNS.find(x => x.id === c.dataset.id), t = c.querySelector('.tag'); if (t) { t.textContent = tagText(pp); t.classList.toggle('ok', state.liked.has(pp.id) && count(pp) >= GOAL); } });
 }
 function renderBar(){
   const k = state.watching.size;
@@ -319,10 +329,9 @@ $('form').addEventListener('submit', async e => {
 // Load live heart counts, then show the most-wanted patterns first
 (async () => {
   if (!CONFIG.preview) { try { state.counts = await fetch(CONFIG.worker + '/counts').then(r => r.json()); } catch {} }
-  PATTERNS.sort((a, b) => count(b) - count(a));
+  for (let i = PATTERNS.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [PATTERNS[i], PATTERNS[j]] = [PATTERNS[j], PATTERNS[i]]; } // neutral order: popularity doesn't steer anyone
   renderAll();
 })();
-renderAll();
 </script>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=tsReady" async defer></script>
 
