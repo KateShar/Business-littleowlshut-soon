@@ -1,0 +1,743 @@
+[
+ {
+  "id": "big-bear-ogol",
+  "name": "Big bear",
+  "designer": "Ogol",
+  "craft": "crochet",
+  "item": "toy",
+  "social": 0,
+  "labelKey": "custom.waiting-big-bear-ogol-jloWn",
+  "order": 999,
+  "photos": [
+   "img/big-bear-ogol/01.jpg",
+   "img/big-bear-ogol/02.jpg",
+   "img/big-bear-ogol/03.jpg",
+   "img/big-bear-ogol/04.jpg"
+  ]
+ },
+ {
+  "id": "bull-bag-zabelina",
+  "name": "Bull bag",
+  "designer": "Zabelina",
+  "craft": "crochet",
+  "item": "bag",
+  "social": 0,
+  "labelKey": "custom.waiting-bull-bag-zabelina-l8O77",
+  "order": 999,
+  "photos": [
+   "img/bull-bag-zabelina/01.jpg"
+  ]
+ },
+ {
+  "id": "cat-baton-ogol",
+  "name": "Cat Baton",
+  "designer": "Ogol",
+  "craft": "crochet",
+  "item": "toy",
+  "social": 0,
+  "labelKey": "custom.waiting-cat-baton-ogol-huMZJ",
+  "order": 999,
+  "photos": [
+   "img/cat-baton-ogol/01.jpg",
+   "img/cat-baton-ogol/02.jpg",
+   "img/cat-baton-ogol/03.jpg"
+  ]
+ },
+ {
+  "id": "cheese-and-mice-potholder-zabelina",
+  "name": "Cheese and mice potholder",
+  "designer": "Zabelina",
+  "craft": "crochet",
+  "item": "potholder",
+  "social": 0,
+  "labelKey": "custom.waiting-cheese-and-mice-potholder-zabelina-on4ni",
+  "order": 999,
+  "photos": [
+   "img/cheese-and-mice-potholder-zabelina/01.jpg",
+   "img/cheese-and-mice-potholder-zabelina/02.jpg",
+   "img/cheese-and-mice-potholder-zabelina/03.jpg"
+  ]
+ },
+ {
+  "id": "chihuahua-ogol",
+  "name": "Chihuahua",
+  "designer": "Ogol",
+  "craft": "crochet",
+  "item": "toy",
+  "social": 0,
+  "labelKey": "custom.waiting-chihuahua-ogol-M8ZnL",
+  "order": 999,
+  "photos": [
+   "img/chihuahua-ogol/01.jpg",
+   "img/chihuahua-ogol/02.jpg"
+  ]
+ },
+ {
+  "id": "chopping-board-potholders-zabelina",
+  "name": "Chopping board potholders",
+  "designer": "Zabelina",
+  "craft": "crochet",
+  "item": "potholder",
+  "social": 0,
+  "labelKey": "custom.waiting-chopping-board-potholders-zabelina-F1HNs",
+  "order": 999,
+  "photos": [
+   "img/chopping-board-potholders-zabelina/01.jpg",
+   "img/chopping-board-potholders-zabelina/02.jpg",
+   "img/chopping-board-potholders-zabelina/03.jpg",
+   "img/chopping-board-potholders-zabelina/04.jpg"
+  ]
+ },
+ {
+  "id": "clothes-for-the-rabbit-ogol",
+  "name": "Clothes for the rabbit",
+  "designer": "Ogol",
+  "craft": "sewing",
+  "item": "toy clothes",
+  "social": 0,
+  "labelKey": "custom.waiting-clothes-for-the-rabbit-ogol-5Q1UR",
+  "order": 999,
+  "photos": [
+   "img/clothes-for-the-rabbit-ogol/01.jpg",
+   "img/clothes-for-the-rabbit-ogol/02.jpg",
+   "img/clothes-for-the-rabbit-ogol/03.jpg",
+   "img/clothes-for-the-rabbit-ogol/04.jpg"
+  ]
+ },
+ {
+  "id": "dragon-bag-zabelina",
+  "name": "Dragon bag",
+  "designer": "Zabelina",
+  "craft": "crochet",
+  "item": "bag",
+  "social": 0,
+  "labelKey": "custom.waiting-dragon-bag-zabelina-OuQ94",
+  "order": 999,
+  "photos": [
+   "img/dragon-bag-zabelina/01.jpg",
+   "img/dragon-bag-zabelina/02.jpg",
+   "img/dragon-bag-zabelina/03.jpg",
+   "img/dragon-bag-zabelina/04.jpg"
+  ]
+ },
+ {
+  "id": "dragon-bauble-zabelina",
+  "name": "Dragon bauble",
+  "designer": "Zabelina",
+  "craft": "knitting",
+  "item": "decoration",
+  "social": 0,
+  "labelKey": "custom.waiting-dragon-bauble-zabelina-WGyVW",
+  "order": 999,
+  "photos": [
+   "img/dragon-bauble-zabelina/01.jpg"
+  ]
+ },
+ {
+  "id": "dragon-bottle-covers-zabelina",
+  "name": "Dragon bottle covers",
+  "designer": "Zabelina",
+  "craft": "crochet",
+  "item": "bottle cover",
+  "social": 0,
+  "labelKey": "custom.waiting-dragon-bottle-covers-zabelina-RMYPL",
+  "order": 999,
+  "photos": [
+   "img/dragon-bottle-covers-zabelina/01.jpg",
+   "img/dragon-bottle-covers-zabelina/02.jpg",
+   "img/dragon-bottle-covers-zabelina/03.jpg"
+  ]
+ },
+ {
+  "id": "dust-speck-knittoy",
+  "name": "Dust speck",
+  "designer": "Knittoy",
+  "craft": "crochet",
+  "item": "toy",
+  "social": 0,
+  "labelKey": "custom.waiting-dust-speck-knittoy-AGCLA",
+  "order": 999,
+  "photos": [
+   "img/dust-speck-knittoy/01.jpg",
+   "img/dust-speck-knittoy/02.jpg",
+   "img/dust-speck-knittoy/03.jpg"
+  ]
+ },
+ {
+  "id": "easter-eggs-ogol",
+  "name": "Easter eggs",
+  "designer": "Ogol",
+  "craft": "crochet",
+  "item": "decoration",
+  "social": 0,
+  "labelKey": "custom.waiting-easter-eggs-ogol-tsWzt",
+  "order": 999,
+  "photos": [
+   "img/easter-eggs-ogol/01.jpg",
+   "img/easter-eggs-ogol/02.jpg",
+   "img/easter-eggs-ogol/03.jpg"
+  ]
+ },
+ {
+  "id": "flower-potholders-zabelina",
+  "name": "Flower potholders",
+  "designer": "Zabelina",
+  "craft": "crochet",
+  "item": "potholder",
+  "social": 0,
+  "labelKey": "custom.waiting-flower-potholders-zabelina-eqYUn",
+  "order": 999,
+  "photos": [
+   "img/flower-potholders-zabelina/01.jpg",
+   "img/flower-potholders-zabelina/02.jpg"
+  ]
+ },
+ {
+  "id": "fly-agaric-keychain-knittoy",
+  "name": "Fly agaric keychain",
+  "designer": "Knittoy",
+  "craft": "crochet",
+  "item": "keychain",
+  "social": 0,
+  "labelKey": "custom.waiting-fly-agaric-keychain-knittoy-LecSc",
+  "order": 999,
+  "photos": [
+   "img/fly-agaric-keychain-knittoy/01.jpg"
+  ]
+ },
+ {
+  "id": "goat-potholder-zabelina",
+  "name": "Goat potholder",
+  "designer": "Zabelina",
+  "craft": "crochet",
+  "item": "potholder",
+  "social": 0,
+  "labelKey": "custom.waiting-goat-potholder-zabelina-tFVgm",
+  "order": 999,
+  "photos": [
+   "img/goat-potholder-zabelina/01.jpg",
+   "img/goat-potholder-zabelina/02.jpg",
+   "img/goat-potholder-zabelina/03.jpg",
+   "img/goat-potholder-zabelina/04.jpg"
+  ]
+ },
+ {
+  "id": "goat-toy-zabelina",
+  "name": "Goat toy",
+  "designer": "Zabelina",
+  "craft": "knitting",
+  "item": "toy",
+  "social": 0,
+  "labelKey": "custom.waiting-goat-toy-zabelina-VIS3s",
+  "order": 999,
+  "photos": [
+   "img/goat-toy-zabelina/01.jpg",
+   "img/goat-toy-zabelina/02.jpg",
+   "img/goat-toy-zabelina/03.jpg",
+   "img/goat-toy-zabelina/04.jpg"
+  ]
+ },
+ {
+  "id": "horse-emma-pertseva",
+  "name": "Horse Emma",
+  "designer": "Pertseva",
+  "craft": "crochet",
+  "item": "toy",
+  "social": 0,
+  "labelKey": "custom.waiting-horse-emma-pertseva-Zf6hQ",
+  "order": 999,
+  "photos": [
+   "img/horse-emma-pertseva/01.jpg",
+   "img/horse-emma-pertseva/02.jpg"
+  ]
+ },
+ {
+  "id": "horse-bag-zabelina",
+  "name": "Horse bag",
+  "designer": "Zabelina",
+  "craft": "crochet",
+  "item": "bag",
+  "social": 0,
+  "labelKey": "custom.waiting-horse-bag-zabelina-qa6sB",
+  "order": 999,
+  "photos": [
+   "img/horse-bag-zabelina/01.jpg",
+   "img/horse-bag-zabelina/02.jpg",
+   "img/horse-bag-zabelina/03.jpg"
+  ]
+ },
+ {
+  "id": "horse-bottle-covers-zabelina",
+  "name": "Horse bottle covers",
+  "designer": "Zabelina",
+  "craft": "crochet",
+  "item": "bottle cover",
+  "social": 0,
+  "labelKey": "custom.waiting-horse-bottle-covers-zabelina-KCI8F",
+  "order": 999,
+  "photos": [
+   "img/horse-bottle-covers-zabelina/01.jpg",
+   "img/horse-bottle-covers-zabelina/02.jpg",
+   "img/horse-bottle-covers-zabelina/03.jpg"
+  ]
+ },
+ {
+  "id": "horse-tea-cosy-zabelina",
+  "name": "Horse tea cosy",
+  "designer": "Zabelina",
+  "craft": "knitting",
+  "item": "tea cosy",
+  "social": 0,
+  "labelKey": "custom.waiting-horse-tea-cosy-zabelina-SwwmK",
+  "order": 999,
+  "photos": [
+   "img/horse-tea-cosy-zabelina/01.jpg"
+  ]
+ },
+ {
+  "id": "kids-bags-zabelina",
+  "name": "Kids' bags",
+  "designer": "Zabelina",
+  "craft": "crochet",
+  "item": "bag",
+  "social": 0,
+  "labelKey": "custom.waiting-kids-bags-zabelina-07ifG",
+  "order": 999,
+  "photos": [
+   "img/kids-bags-zabelina/01.jpg",
+   "img/kids-bags-zabelina/02.jpg",
+   "img/kids-bags-zabelina/03.jpg",
+   "img/kids-bags-zabelina/04.jpg",
+   "img/kids-bags-zabelina/05.jpg"
+  ]
+ },
+ {
+  "id": "knitted-bunnies-zabelina",
+  "name": "Knitted bunnies",
+  "designer": "Zabelina",
+  "craft": "knitting",
+  "item": "toy",
+  "social": 0,
+  "labelKey": "custom.waiting-knitted-bunnies-zabelina-rkiSN",
+  "order": 999,
+  "photos": [
+   "img/knitted-bunnies-zabelina/01.jpg",
+   "img/knitted-bunnies-zabelina/02.jpg"
+  ]
+ },
+ {
+  "id": "knitted-cat-bottle-covers-zabelina",
+  "name": "Knitted cat bottle covers",
+  "designer": "Zabelina",
+  "craft": "knitting",
+  "item": "bottle cover",
+  "social": 0,
+  "labelKey": "custom.waiting-knitted-cat-bottle-covers-zabelina-O3ViG",
+  "order": 999,
+  "photos": [
+   "img/knitted-cat-bottle-covers-zabelina/01.jpg"
+  ]
+ },
+ {
+  "id": "knitted-dragon-bottle-covers-zabelina",
+  "name": "Knitted dragon bottle covers",
+  "designer": "Zabelina",
+  "craft": "knitting",
+  "item": "bottle cover",
+  "social": 0,
+  "labelKey": "custom.waiting-knitted-dragon-bottle-covers-zabelina-Z4cer",
+  "order": 999,
+  "photos": [
+   "img/knitted-dragon-bottle-covers-zabelina/01.jpg"
+  ]
+ },
+ {
+  "id": "korzhik-the-cat-ogol",
+  "name": "Korzhik the cat",
+  "designer": "Ogol",
+  "craft": "crochet",
+  "item": "toy",
+  "social": 0,
+  "labelKey": "custom.waiting-korzhik-the-cat-ogol-A5vi9",
+  "order": 999,
+  "photos": [
+   "img/korzhik-the-cat-ogol/01.jpg",
+   "img/korzhik-the-cat-ogol/02.jpg",
+   "img/korzhik-the-cat-ogol/03.jpg",
+   "img/korzhik-the-cat-ogol/04.jpg"
+  ]
+ },
+ {
+  "id": "lady-in-folk-costume-potholder-zabelina",
+  "name": "Lady in folk costume potholder",
+  "designer": "Zabelina",
+  "craft": "crochet",
+  "item": "potholder",
+  "social": 0,
+  "labelKey": "custom.waiting-lady-in-folk-costume-potholder-zabelina-l9NfC",
+  "order": 999,
+  "photos": [
+   "img/lady-in-folk-costume-potholder-zabelina/01.jpg",
+   "img/lady-in-folk-costume-potholder-zabelina/02.jpg",
+   "img/lady-in-folk-costume-potholder-zabelina/03.jpg",
+   "img/lady-in-folk-costume-potholder-zabelina/04.jpg"
+  ]
+ },
+ {
+  "id": "lighthouse-zabelina",
+  "name": "Lighthouse",
+  "designer": "Zabelina",
+  "craft": "knitting",
+  "item": "decoration",
+  "social": 0,
+  "labelKey": "custom.waiting-lighthouse-zabelina-QuqIq",
+  "order": 999,
+  "photos": [
+   "img/lighthouse-zabelina/01.jpg"
+  ]
+ },
+ {
+  "id": "little-ghost-knittoy",
+  "name": "Little ghost",
+  "designer": "Knittoy",
+  "craft": "crochet",
+  "item": "keychain",
+  "social": 0,
+  "labelKey": "custom.waiting-little-ghost-knittoy-27CES",
+  "order": 999,
+  "photos": [
+   "img/little-ghost-knittoy/01.jpg",
+   "img/little-ghost-knittoy/02.jpg"
+  ]
+ },
+ {
+  "id": "little-spider-knittoy",
+  "name": "Little spider",
+  "designer": "Knittoy",
+  "craft": "crochet",
+  "item": "toy",
+  "social": 0,
+  "labelKey": "custom.waiting-little-spider-knittoy-ERKuY",
+  "order": 999,
+  "photos": [
+   "img/little-spider-knittoy/01.jpg",
+   "img/little-spider-knittoy/02.jpg"
+  ]
+ },
+ {
+  "id": "patchwork-potholders-zabelina",
+  "name": "Patchwork potholders",
+  "designer": "Zabelina",
+  "craft": "crochet",
+  "item": "potholder",
+  "social": 0,
+  "labelKey": "custom.waiting-patchwork-potholders-zabelina-kGkzA",
+  "order": 999,
+  "photos": [
+   "img/patchwork-potholders-zabelina/01.jpg",
+   "img/patchwork-potholders-zabelina/02.jpg",
+   "img/patchwork-potholders-zabelina/03.jpg"
+  ]
+ },
+ {
+  "id": "pegasus-miguel-pertseva",
+  "name": "Pegasus Miguel",
+  "designer": "Pertseva",
+  "craft": "crochet",
+  "item": "toy",
+  "social": 0,
+  "labelKey": "custom.waiting-pegasus-miguel-pertseva-UsGv6",
+  "order": 999,
+  "photos": [
+   "img/pegasus-miguel-pertseva/01.jpg",
+   "img/pegasus-miguel-pertseva/02.jpg",
+   "img/pegasus-miguel-pertseva/03.jpg",
+   "img/pegasus-miguel-pertseva/04.jpg"
+  ]
+ },
+ {
+  "id": "sailor-zabelina",
+  "name": "Sailor",
+  "designer": "Zabelina",
+  "craft": "knitting",
+  "item": "toy",
+  "social": 0,
+  "labelKey": "custom.waiting-sailor-zabelina-YN0Ot",
+  "order": 999,
+  "photos": [
+   "img/sailor-zabelina/01.jpg"
+  ]
+ },
+ {
+  "id": "seagulls-ogol",
+  "name": "Seagulls",
+  "designer": "Ogol",
+  "craft": "crochet",
+  "item": "toy",
+  "social": 0,
+  "labelKey": "custom.waiting-seagulls-ogol-jOEYc",
+  "order": 999,
+  "photos": [
+   "img/seagulls-ogol/01.jpg",
+   "img/seagulls-ogol/02.jpg",
+   "img/seagulls-ogol/03.jpg"
+  ]
+ },
+ {
+  "id": "sheep-bag-zabelina",
+  "name": "Sheep bag",
+  "designer": "Zabelina",
+  "craft": "crochet",
+  "item": "bag",
+  "social": 0,
+  "labelKey": "custom.waiting-sheep-bag-zabelina-kYQq1",
+  "order": 999,
+  "photos": [
+   "img/sheep-bag-zabelina/01.jpg",
+   "img/sheep-bag-zabelina/02.jpg",
+   "img/sheep-bag-zabelina/03.jpg",
+   "img/sheep-bag-zabelina/04.jpg"
+  ]
+ },
+ {
+  "id": "sheep-bottle-covers-zabelina",
+  "name": "Sheep bottle covers",
+  "designer": "Zabelina",
+  "craft": "crochet",
+  "item": "bottle cover",
+  "social": 0,
+  "labelKey": "custom.waiting-sheep-bottle-covers-zabelina-fQfjZ",
+  "order": 999,
+  "photos": [
+   "img/sheep-bottle-covers-zabelina/01.jpg",
+   "img/sheep-bottle-covers-zabelina/02.jpg"
+  ]
+ },
+ {
+  "id": "sheep-head-baubles-zabelina",
+  "name": "Sheep head baubles",
+  "designer": "Zabelina",
+  "craft": "knitting",
+  "item": "decoration",
+  "social": 0,
+  "labelKey": "custom.waiting-sheep-head-baubles-zabelina-QphfV",
+  "order": 999,
+  "photos": [
+   "img/sheep-head-baubles-zabelina/01.jpg",
+   "img/sheep-head-baubles-zabelina/02.jpg",
+   "img/sheep-head-baubles-zabelina/03.jpg"
+  ]
+ },
+ {
+  "id": "sheep-lady-zabelina",
+  "name": "Sheep lady",
+  "designer": "Zabelina",
+  "craft": "knitting",
+  "item": "toy",
+  "social": 0,
+  "labelKey": "custom.waiting-sheep-lady-zabelina-E1sY4",
+  "order": 999,
+  "photos": [
+   "img/sheep-lady-zabelina/01.jpg",
+   "img/sheep-lady-zabelina/02.jpg"
+  ]
+ },
+ {
+  "id": "sheep-lady-tea-cosy-zabelina",
+  "name": "Sheep lady tea cosy",
+  "designer": "Zabelina",
+  "craft": "knitting",
+  "item": "tea cosy",
+  "social": 0,
+  "labelKey": "custom.waiting-sheep-lady-tea-cosy-zabelina-5Suaz",
+  "order": 999,
+  "photos": [
+   "img/sheep-lady-tea-cosy-zabelina/01.jpg",
+   "img/sheep-lady-tea-cosy-zabelina/02.jpg"
+  ]
+ },
+ {
+  "id": "small-horse-toys-zabelina",
+  "name": "Small horse toys",
+  "designer": "Zabelina",
+  "craft": "knitting",
+  "item": "toy",
+  "social": 0,
+  "labelKey": "custom.waiting-small-horse-toys-zabelina-FCkxF",
+  "order": 999,
+  "photos": [
+   "img/small-horse-toys-zabelina/01.jpg",
+   "img/small-horse-toys-zabelina/02.jpg",
+   "img/small-horse-toys-zabelina/03.jpg"
+  ]
+ },
+ {
+  "id": "small-round-sheep-zabelina",
+  "name": "Small round sheep",
+  "designer": "Zabelina",
+  "craft": "knitting",
+  "item": "toy",
+  "social": 0,
+  "labelKey": "custom.waiting-small-round-sheep-zabelina-DxR5q",
+  "order": 999,
+  "photos": [
+   "img/small-round-sheep-zabelina/01.jpg",
+   "img/small-round-sheep-zabelina/02.jpg",
+   "img/small-round-sheep-zabelina/03.jpg",
+   "img/small-round-sheep-zabelina/04.jpg",
+   "img/small-round-sheep-zabelina/05.jpg"
+  ]
+ },
+ {
+  "id": "small-sheep-toys-zabelina",
+  "name": "Small sheep toys",
+  "designer": "Zabelina",
+  "craft": "knitting",
+  "item": "toy",
+  "social": 0,
+  "labelKey": "custom.waiting-small-sheep-toys-zabelina-4HWkl",
+  "order": 999,
+  "photos": [
+   "img/small-sheep-toys-zabelina/01.jpg",
+   "img/small-sheep-toys-zabelina/02.jpg",
+   "img/small-sheep-toys-zabelina/03.jpg",
+   "img/small-sheep-toys-zabelina/04.jpg"
+  ]
+ },
+ {
+  "id": "snakes-crochet-knitting-zabelina",
+  "name": "Snakes (crochet & knitting)",
+  "designer": "Zabelina",
+  "craft": "crochet",
+  "item": "toy / decoration",
+  "social": 0,
+  "labelKey": "custom.waiting-snakes-crochet-knitting-zabelina-2PYX8",
+  "order": 999,
+  "photos": [
+   "img/snakes-crochet-knitting-zabelina/01.jpg",
+   "img/snakes-crochet-knitting-zabelina/02.jpg",
+   "img/snakes-crochet-knitting-zabelina/03.jpg"
+  ]
+ },
+ {
+  "id": "snegurochka-doll-zabelina",
+  "name": "Snegurochka doll",
+  "designer": "Zabelina",
+  "craft": "knitting",
+  "item": "toy",
+  "social": 0,
+  "labelKey": "custom.waiting-snegurochka-doll-zabelina-aU7bf",
+  "order": 999,
+  "photos": [
+   "img/snegurochka-doll-zabelina/01.jpg",
+   "img/snegurochka-doll-zabelina/02.jpg",
+   "img/snegurochka-doll-zabelina/03.jpg"
+  ]
+ },
+ {
+  "id": "snowman-and-rabbit-ogol",
+  "name": "Snowman and rabbit",
+  "designer": "Ogol",
+  "craft": "crochet",
+  "item": "toy",
+  "social": 0,
+  "labelKey": "custom.waiting-snowman-and-rabbit-ogol-EqYT4",
+  "order": 999,
+  "photos": [
+   "img/snowman-and-rabbit-ogol/01.jpg",
+   "img/snowman-and-rabbit-ogol/02.jpg",
+   "img/snowman-and-rabbit-ogol/03.jpg"
+  ]
+ },
+ {
+  "id": "stray-cat-ogol",
+  "name": "Stray cat",
+  "designer": "Ogol",
+  "craft": "crochet",
+  "item": "toy",
+  "social": 0,
+  "labelKey": "custom.waiting-stray-cat-ogol-KT2VE",
+  "order": 999,
+  "photos": [
+   "img/stray-cat-ogol/01.jpg",
+   "img/stray-cat-ogol/02.jpg",
+   "img/stray-cat-ogol/03.jpg"
+  ]
+ },
+ {
+  "id": "striped-rabbit-pertseva",
+  "name": "Striped rabbit",
+  "designer": "Pertseva",
+  "craft": "crochet",
+  "item": "toy",
+  "social": 0,
+  "labelKey": "custom.waiting-striped-rabbit-pertseva-iaoyx",
+  "order": 999,
+  "photos": [
+   "img/striped-rabbit-pertseva/01.jpg",
+   "img/striped-rabbit-pertseva/02.jpg",
+   "img/striped-rabbit-pertseva/03.jpg"
+  ]
+ },
+ {
+  "id": "tall-rabbit-ogol",
+  "name": "Tall rabbit",
+  "designer": "Ogol",
+  "craft": "crochet",
+  "item": "toy",
+  "social": 0,
+  "labelKey": "custom.waiting-tall-rabbit-ogol-8oCMv",
+  "order": 999,
+  "photos": [
+   "img/tall-rabbit-ogol/01.jpg",
+   "img/tall-rabbit-ogol/02.jpg",
+   "img/tall-rabbit-ogol/03.jpg"
+  ]
+ },
+ {
+  "id": "teapot-potholders-zabelina",
+  "name": "Teapot potholders",
+  "designer": "Zabelina",
+  "craft": "crochet",
+  "item": "potholder",
+  "social": 0,
+  "labelKey": "custom.waiting-teapot-potholders-zabelina-GSMV3",
+  "order": 999,
+  "photos": [
+   "img/teapot-potholders-zabelina/01.jpg",
+   "img/teapot-potholders-zabelina/02.jpg",
+   "img/teapot-potholders-zabelina/03.jpg",
+   "img/teapot-potholders-zabelina/04.jpg",
+   "img/teapot-potholders-zabelina/05.jpg"
+  ]
+ },
+ {
+  "id": "tiger-bottle-cover-zabelina",
+  "name": "Tiger bottle cover",
+  "designer": "Zabelina",
+  "craft": "knitting",
+  "item": "bottle cover",
+  "social": 0,
+  "labelKey": "custom.waiting-tiger-bottle-cover-zabelina-1sc4A",
+  "order": 999,
+  "photos": [
+   "img/tiger-bottle-cover-zabelina/01.jpg",
+   "img/tiger-bottle-cover-zabelina/02.jpg"
+  ]
+ },
+ {
+  "id": "tiger-head-potholder-zabelina",
+  "name": "Tiger head potholder",
+  "designer": "Zabelina",
+  "craft": "crochet",
+  "item": "potholder",
+  "social": 0,
+  "labelKey": "custom.waiting-tiger-head-potholder-zabelina-V4PZc",
+  "order": 999,
+  "photos": [
+   "img/tiger-head-potholder-zabelina/01.jpg",
+   "img/tiger-head-potholder-zabelina/02.jpg",
+   "img/tiger-head-potholder-zabelina/03.jpg"
+  ]
+ }
+]

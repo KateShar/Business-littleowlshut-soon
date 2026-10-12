@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Which pattern should I publish next? · LittleOwlsHut</title>
+<meta name="description" content="Heart the crochet and knitting patterns you want LittleOwlsHut to publish next, and get an email when they come out.">
+<meta property="og:title" content="Which pattern should I publish next?">
+<meta property="og:description" content="Heart the patterns you want, and get an email the day they come out.">
+<meta property="og:url" content="https://soon.littleowlshut.com/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,800&display=swap">
+<style>
+/* Layout: same brand as patterns.littleowlshut.com. Pinterest-style card grid, sticky bottom bar collects the ticked patterns, sign-up sheet slides over */
+:root{
+  --ground:#FBF6EE; --paper:#FFFDF9; --ink:#3E2A1E; --muted:#7D6A5C; --line:#E7DCCE;
+  --accent:#B5603A; --accent-ink:#FFFFFF; --accent-soft:#F4E2D6; --sage:#6E7A52; --sage-soft:#E6E9DB; --band:#EFE4D3;
+  --note:#F3E7B8; --note-ink:#5B4A12;
+  --display:"Playfair Display", Georgia, serif;
+  --body:"Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#1E1611; --paper:#2A1F18; --ink:#F2E7D9; --muted:#BCA898; --line:#3E3027;
+    --accent:#D9845C; --accent-ink:#1E1611; --accent-soft:#45291C; --sage:#A9B784; --sage-soft:#2C3122; --band:#2F241C;
+    --note:#3D3418; --note-ink:#EADB9C; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#1E1611; --paper:#2A1F18; --ink:#F2E7D9; --muted:#BCA898; --line:#3E3027;
+  --accent:#D9845C; --accent-ink:#1E1611; --accent-soft:#45291C; --sage:#A9B784; --sage-soft:#2C3122; --band:#2F241C;
+  --note:#3D3418; --note-ink:#EADB9C; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{background:var(--ground)}
+body{color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;padding:0 18px 110px}
+header{max-width:1100px;margin:0 auto;padding-block:34px 18px;display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center}
+.brand{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:800}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(2rem,4.5vw,3rem);margin:0;line-height:1.1;text-wrap:balance}
+h1 em{font-style:italic;font-weight:500;color:var(--accent)}
+.lede{max-width:60ch;color:var(--muted);margin:0}
+.how{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;font-size:.9rem;margin-top:6px}
+.how span{display:flex;gap:6px;align-items:center}
+.how b{color:var(--ink)}
+.grid{max-width:1100px;margin:10px auto 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.card.watching{border-color:var(--accent)}
+.ph{aspect-ratio:5/4;max-width:100%;position:relative;display:grid;place-items:center;color:#5a4636;font-size:.85rem;text-align:center;padding:12px}
+.ph1{background:radial-gradient(circle at 40% 35%,#f1e3d0,#d8b994)}
+.ph2{background:radial-gradient(circle at 40% 35%,#eef0e6,#c4cdb3)}
+.ph3{background:radial-gradient(circle at 40% 35%,#efe5da,#cbb49f)}
+.ph4{background:radial-gradient(circle at 40% 35%,#e9e4ef,#c3b6cf)}
+.ph5{background:radial-gradient(circle at 40% 35%,#f4e6e0,#ddb8a8)}
+.ph6{background:radial-gradient(circle at 40% 35%,#e3ece9,#b6cbc4)}
+.car{position:relative;aspect-ratio:1/1;max-width:100%}
+.slides{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;scroll-behavior:smooth}
+.slides::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;scroll-snap-align:start;display:grid;place-items:center;color:#5a4636;font-size:.85rem;text-align:center;padding:12px}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;border:0;background:rgba(255,253,249,.55);opacity:.75;transition:opacity .2s;color:#3E2A1E;font-size:1.1rem;font-weight:800;cursor:pointer;display:grid;place-items:center;box-shadow:0 1px 4px rgba(0,0,0,.15)}
+.arrow.prev{left:6px}.arrow.next{right:6px}
+@media (hover:hover){.arrow{opacity:0}.car:hover .arrow,.arrow:focus-visible{opacity:.9}}
+.dots{position:absolute;bottom:9px;left:0;right:0;display:flex;justify-content:center;gap:5px;pointer-events:none}
+.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,253,249,.6);display:block}
+.dots i.on{background:#FFFDF9}
+.social{font-size:.82rem;color:var(--muted);margin:-4px 0 0}
+.err{color:var(--accent);font-size:.85rem;font-weight:600;margin:0}
+.tag{align-self:flex-start;background:var(--accent-soft);color:var(--ink);font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px}
+.tag.ok{background:var(--sage);color:var(--paper)}
+.body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:10px;flex:1}
+.title{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.title h2{font-family:var(--display);font-size:1.2rem;font-weight:700;margin:0;line-height:1.2}
+.title small{display:block;font-family:var(--body);font-size:.82rem;font-weight:400;color:var(--muted);margin-top:2px}
+.heart{flex:none;display:flex;align-items:center;gap:6px;font:inherit;font-weight:800;font-size:.95rem;color:var(--ink);background:var(--ground);border:1px solid var(--line);border-radius:999px;padding:5px 12px 5px 10px;cursor:pointer;font-variant-numeric:tabular-nums}
+.heart svg{width:18px;height:18px;fill:none;stroke:var(--accent);stroke-width:2}
+.heart[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent)}
+.heart[aria-pressed="true"] svg{fill:var(--accent)}
+.heart:active svg{transform:scale(1.25)}
+.meter{display:flex;flex-direction:column;gap:5px}
+.track{height:8px;border-radius:99px;background:var(--band);overflow:hidden}
+.fill{height:100%;background:var(--accent);border-radius:99px;transition:width .35s ease}
+.meter.done .fill{background:var(--sage)}
+.meter p{margin:0;font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.meter p b{color:var(--ink)}
+.notify{display:flex;align-items:center;gap:9px;font-size:.92rem;font-weight:600;cursor:pointer;margin-top:auto;padding-top:4px}
+.notify input{width:19px;height:19px;accent-color:var(--accent)}
+button:focus-visible,.notify input:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--paper);border-top:1px solid var(--line);padding:12px 18px calc(12px + env(safe-area-inset-bottom,0px));display:flex;justify-content:center}
+.bar-in{max-width:1100px;width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.bar p{margin:0;font-size:.95rem}
+.cta{font:inherit;font-weight:800;background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:11px 24px;cursor:pointer}
+.cta:disabled{opacity:.45;cursor:default}
+
+.sheet{position:fixed;inset:0;background:rgba(30,22,17,.45);display:flex;align-items:flex-end;justify-content:center;padding:18px}
+.panel{background:var(--paper);color:var(--ink);border-radius:16px;max-width:520px;width:100%;padding:24px;display:flex;flex-direction:column;gap:14px;max-height:calc(100% - 20px);overflow:auto;margin-bottom:env(safe-area-inset-bottom,0px)}
+.panel h3{font-family:var(--display);font-size:1.4rem;margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{background:var(--accent-soft);color:var(--ink);border-radius:999px;padding:3px 11px;font-size:.85rem;font-weight:600}
+.panel label{display:flex;flex-direction:column;gap:5px;font-size:.88rem;font-weight:600}
+.panel input[type=text],.panel input[type=email],.panel select{font:inherit;font-weight:400;padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:var(--ground);color:var(--ink)}
+.consent{flex-direction:row!important;align-items:flex-start;gap:10px!important;font-weight:400!important}
+.consent input{width:19px;height:19px;margin-top:2px;accent-color:var(--accent);flex:none}
+.row{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.ghost{font:inherit;font-weight:700;background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:10px 20px;cursor:pointer}
+.fine{font-size:.8rem;color:var(--muted);margin:0}
+.thanks{text-align:center;display:flex;flex-direction:column;gap:10px;align-items:center}
+footer{max-width:1100px;margin:36px auto 0;text-align:center;font-size:.85rem;color:var(--muted)}
+footer a{color:var(--accent)}
+@media (max-width:520px){ .bar p{font-size:.88rem} .cta{width:100%} }
+@media (prefers-reduced-motion:reduce){ .fill{transition:none} .heart:active svg{transform:none} }
+
+img.slide{width:100%;height:100%;object-fit:cover;padding:0;display:block;background:var(--band)}
+.toast{position:fixed;left:50%;bottom:92px;transform:translateX(-50%);background:var(--ink);color:var(--ground);padding:10px 16px;border-radius:10px;font-size:.9rem;max-width:min(92vw,460px);z-index:20;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+.sheet{z-index:30}
+</style>
+
+</head>
+<body>
+<header>
+  <span class="brand">LittleOwlsHut</span>
+  <h1>Which pattern should I <em>publish next?</em></h1>
+  <p class="lede">These patterns could be coming to LittleOwlsHut. Give a heart to the ones you'd love to crochet or knit: <b>the more hearts a pattern gets, the sooner it will be published.</b> The patterns with the most hearts go to the top of my publishing queue. Tick "Email me" and I'll tell you the day it comes out.</p>
+  <div class="how"><span>❤️ <b>Heart</b> = I want this one</span><span>‹ › <b>Swipe</b> for more photos</span><span>✉️ <b>Email me</b> = tell me when it's out</span><span>🛡️ <b>One heart per person</b>, robots are filtered out</span></div>
+</header>
+
+<main class="grid" id="grid" aria-live="polite"></main>
+
+<footer>Each person can give one heart per pattern. Every heart passes a quick, invisible check (Cloudflare Turnstile) that the visitor is a real person. Hearts need no email and store no personal details.<br>Emails come only for the patterns you tick, and you can unsubscribe at any time.<br>Photos © the pattern designers. Shop the released patterns at <a href="https://www.littleowlshut.com">littleowlshut.com</a></footer>
+
+<div class="toast" id="toast" role="status" hidden></div>
+<div id="ts" style="position:fixed;bottom:80px;left:50%;transform:translateX(-50%);z-index:5"></div>
+
+<div class="bar"><div class="bar-in"><p id="barText">Tick "Email me" on any pattern to get a message when it comes out.</p><button class="cta" id="openSheet" disabled>Email me when they're out</button></div></div>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <form id="form" style="display:flex;flex-direction:column;gap:14px" novalidate>
+      <h3 id="sheetTitle">Get an email when they're out</h3>
+      <div class="chips" id="chips"></div>
+      <label for="fname">First name<input type="text" id="fname" autocomplete="given-name" maxlength="60"></label>
+      <label for="email">Email<input type="email" id="email" required autocomplete="email" maxlength="120"></label>
+      <label for="email2">Type your email again<input type="email" id="email2" required autocomplete="off" maxlength="120"></label>
+      <label for="lang">Which language would you crochet from? <span style="font-weight:400;color:var(--muted)">(optional)</span>
+        <select id="lang"><option value="">Choose…</option><option>English</option><option>Deutsch</option><option>Français</option><option>Polski</option><option>Nederlands</option><option>Italiano</option><option>Español</option><option>Русский</option><option>Dansk</option><option value="Other">Other…</option></select>
+      </label>
+      <label for="langOther" id="langOtherWrap" hidden>Which language?<input type="text" id="langOther" maxlength="40" placeholder="Type your language"></label>
+      <label class="consent" for="consent"><input type="checkbox" id="consent"><span>Yes, email me when the patterns I ticked are released. I can unsubscribe at any time.</span></label>
+      <p class="err" id="formErr" hidden></p>
+      <p class="fine">You'll get one email to confirm your address. Saved securely in the LittleOwlsHut shop (Wix). No newsletter, no sharing.</p>
+      <div class="row"><button type="button" class="ghost" id="cancel">Back</button><button type="submit" class="cta" id="submitBtn">Notify me</button></div>
+    </form>
+    <div class="thanks" id="thanks" hidden>
+      <h3>Almost done: please check your inbox 💌</h3>
+      <p style="margin:0">I've sent you an email from LittleOwlsHut. Click the button in it to confirm your address. Once you've confirmed, I'll email you as soon as your patterns are out.</p>
+      <p class="fine">No email after a few minutes? Look in your spam or "Promotions" folder.</p>
+      <button type="button" class="ghost" id="close">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const CONFIG = {"worker": "https://soon-hearts.littleowlshut.workers.dev", "turnstileSiteKey": "0x4AAAAAAFUVfeo8sen4TOgO", "wixClientId": "cc40edea-1299-4afb-b87f-dd336a1dca83", "formId": "2e244f71-f8c0-4da3-9e0f-f454baeda9fe", "fields": {"firstName": "first_name", "email": "email", "patterns": "waiting_patterns", "language": "crochet_language", "consent": "subscribe"}, "goal": 100};
+const PATTERNS = [{"id": "big-bear-ogol", "name": "Big bear", "designer": "Ogol", "craft": "crochet", "item": "toy", "social": 0, "labelKey": "custom.waiting-big-bear-ogol-jloWn", "order": 999, "photos": ["img/big-bear-ogol/01.jpg", "img/big-bear-ogol/02.jpg", "img/big-bear-ogol/03.jpg", "img/big-bear-ogol/04.jpg"]}, {"id": "bull-bag-zabelina", "name": "Bull bag", "designer": "Zabelina", "craft": "crochet", "item": "bag", "social": 0, "labelKey": "custom.waiting-bull-bag-zabelina-l8O77", "order": 999, "photos": ["img/bull-bag-zabelina/01.jpg"]}, {"id": "cat-baton-ogol", "name": "Cat Baton", "designer": "Ogol", "craft": "crochet", "item": "toy", "social": 0, "labelKey": "custom.waiting-cat-baton-ogol-huMZJ", "order": 999, "photos": ["img/cat-baton-ogol/01.jpg", "img/cat-baton-ogol/02.jpg", "img/cat-baton-ogol/03.jpg"]}, {"id": "cheese-and-mice-potholder-zabelina", "name": "Cheese and mice potholder", "designer": "Zabelina", "craft": "crochet", "item": "potholder", "social": 0, "labelKey": "custom.waiting-cheese-and-mice-potholder-zabelina-on4ni", "order": 999, "photos": ["img/cheese-and-mice-potholder-zabelina/01.jpg", "img/cheese-and-mice-potholder-zabelina/02.jpg", "img/cheese-and-mice-potholder-zabelina/03.jpg"]}, {"id": "chihuahua-ogol", "name": "Chihuahua", "designer": "Ogol", "craft": "crochet", "item": "toy", "social": 0, "labelKey": "custom.waiting-chihuahua-ogol-M8ZnL", "order": 999, "photos": ["img/chihuahua-ogol/01.jpg", "img/chihuahua-ogol/02.jpg"]}, {"id": "chopping-board-potholders-zabelina", "name": "Chopping board potholders", "designer": "Zabelina", "craft": "crochet", "item": "potholder", "social": 0, "labelKey": "custom.waiting-chopping-board-potholders-zabelina-F1HNs", "order": 999, "photos": ["img/chopping-board-potholders-zabelina/01.jpg", "img/chopping-board-potholders-zabelina/02.jpg", "img/chopping-board-potholders-zabelina/03.jpg", "img/chopping-board-potholders-zabelina/04.jpg"]}, {"id": "clothes-for-the-rabbit-ogol", "name": "Clothes for the rabbit", "designer": "Ogol", "craft": "sewing", "item": "toy clothes", "social": 0, "labelKey": "custom.waiting-clothes-for-the-rabbit-ogol-5Q1UR", "order": 999, "photos": ["img/clothes-for-the-rabbit-ogol/01.jpg", "img/clothes-for-the-rabbit-ogol/02.jpg", "img/clothes-for-the-rabbit-ogol/03.jpg", "img/clothes-for-the-rabbit-ogol/04.jpg"]}, {"id": "dragon-bag-zabelina", "name": "Dragon bag", "designer": "Zabelina", "craft": "crochet", "item": "bag", "social": 0, "labelKey": "custom.waiting-dragon-bag-zabelina-OuQ94", "order": 999, "photos": ["img/dragon-bag-zabelina/01.jpg", "img/dragon-bag-zabelina/02.jpg", "img/dragon-bag-zabelina/03.jpg", "img/dragon-bag-zabelina/04.jpg"]}, {"id": "dragon-bauble-zabelina", "name": "Dragon bauble", "designer": "Zabelina", "craft": "knitting", "item": "decoration", "social": 0, "labelKey": "custom.waiting-dragon-bauble-zabelina-WGyVW", "order": 999, "photos": ["img/dragon-bauble-zabelina/01.jpg"]}, {"id": "dragon-bottle-covers-zabelina", "name": "Dragon bottle covers", "designer": "Zabelina", "craft": "crochet", "item": "bottle cover", "social": 0, "labelKey": "custom.waiting-dragon-bottle-covers-zabelina-RMYPL", "order": 999, "photos": ["img/dragon-bottle-covers-zabelina/01.jpg", "img/dragon-bottle-covers-zabelina/02.jpg", "img/dragon-bottle-covers-zabelina/03.jpg"]}, {"id": "dust-speck-knittoy", "name": "Dust speck", "designer": "Knittoy", "craft": "crochet", "item": "toy", "social": 0, "labelKey": "custom.waiting-dust-speck-knittoy-AGCLA", "order": 999, "photos": ["img/dust-speck-knittoy/01.jpg", "img/dust-speck-knittoy/02.jpg", "img/dust-speck-knittoy/03.jpg"]}, {"id": "easter-eggs-ogol", "name": "Easter eggs", "designer": "Ogol", "craft": "crochet", "item": "decoration", "social": 0, "labelKey": "custom.waiting-easter-eggs-ogol-tsWzt", "order": 999, "photos": ["img/easter-eggs-ogol/01.jpg", "img/easter-eggs-ogol/02.jpg", "img/easter-eggs-ogol/03.jpg"]}, {"id": "flower-potholders-zabelina", "name": "Flower potholders", "designer": "Zabelina", "craft": "crochet", "item": "potholder", "social": 0, "labelKey": "custom.waiting-flower-potholders-zabelina-eqYUn", "order": 999, "photos": ["img/flower-potholders-zabelina/01.jpg", "img/flower-potholders-zabelina/02.jpg"]}, {"id": "fly-agaric-keychain-knittoy", "name": "Fly agaric keychain", "designer": "Knittoy", "craft": "crochet", "item": "keychain", "social": 0, "labelKey": "custom.waiting-fly-agaric-keychain-knittoy-LecSc", "order": 999, "photos": ["img/fly-agaric-keychain-knittoy/01.jpg"]}, {"id": "goat-potholder-zabelina", "name": "Goat potholder", "designer": "Zabelina", "craft": "crochet", "item": "potholder", "social": 0, "labelKey": "custom.waiting-goat-potholder-zabelina-tFVgm", "order": 999, "photos": ["img/goat-potholder-zabelina/01.jpg", "img/goat-potholder-zabelina/02.jpg", "img/goat-potholder-zabelina/03.jpg", "img/goat-potholder-zabelina/04.jpg"]}, {"id": "goat-toy-zabelina", "name": "Goat toy", "designer": "Zabelina", "craft": "knitting", "item": "toy", "social": 0, "labelKey": "custom.waiting-goat-toy-zabelina-VIS3s", "order": 999, "photos": ["img/goat-toy-zabelina/01.jpg", "img/goat-toy-zabelina/02.jpg", "img/goat-toy-zabelina/03.jpg", "img/goat-toy-zabelina/04.jpg"]}, {"id": "horse-emma-pertseva", "name": "Horse Emma", "designer": "Pertseva", "craft": "crochet", "item": "toy", "social": 0, "labelKey": "custom.waiting-horse-emma-pertseva-Zf6hQ", "order": 999, "photos": ["img/horse-emma-pertseva/01.jpg", "img/horse-emma-pertseva/02.jpg"]}, {"id": "horse-bag-zabelina", "name": "Horse bag", "designer": "Zabelina", "craft": "crochet", "item": "bag", "social": 0, "labelKey": "custom.waiting-horse-bag-zabelina-qa6sB", "order": 999, "photos": ["img/horse-bag-zabelina/01.jpg", "img/horse-bag-zabelina/02.jpg", "img/horse-bag-zabelina/03.jpg"]}, {"id": "horse-bottle-covers-zabelina", "name": "Horse bottle covers", "designer": "Zabelina", "craft": "crochet", "item": "bottle cover", "social": 0, "labelKey": "custom.waiting-horse-bottle-covers-zabelina-KCI8F", "order": 999, "photos": ["img/horse-bottle-covers-zabelina/01.jpg", "img/horse-bottle-covers-zabelina/02.jpg", "img/horse-bottle-covers-zabelina/03.jpg"]}, {"id": "horse-tea-cosy-zabelina", "name": "Horse tea cosy", "designer": "Zabelina", "craft": "knitting", "item": "tea cosy", "social": 0, "labelKey": "custom.waiting-horse-tea-cosy-zabelina-SwwmK", "order": 999, "photos": ["img/horse-tea-cosy-zabelina/01.jpg"]}, {"id": "kids-bags-zabelina", "name": "Kids' bags", "designer": "Zabelina", "craft": "crochet", "item": "bag", "social": 0, "labelKey": "custom.waiting-kids-bags-zabelina-07ifG", "order": 999, "photos": ["img/kids-bags-zabelina/01.jpg", "img/kids-bags-zabelina/02.jpg", "img/kids-bags-zabelina/03.jpg", "img/kids-bags-zabelina/04.jpg", "img/kids-bags-zabelina/05.jpg"]}, {"id": "knitted-bunnies-zabelina", "name": "Knitted bunnies", "designer": "Zabelina", "craft": "knitting", "item": "toy", "social": 0, "labelKey": "custom.waiting-knitted-bunnies-zabelina-rkiSN", "order": 999, "photos": ["img/knitted-bunnies-zabelina/01.jpg", "img/knitted-bunnies-zabelina/02.jpg"]}, {"id": "knitted-cat-bottle-covers-zabelina", "name": "Knitted cat bottle covers", "designer": "Zabelina", "craft": "knitting", "item": "bottle cover", "social": 0, "labelKey": "custom.waiting-knitted-cat-bottle-covers-zabelina-O3ViG", "order": 999, "photos": ["img/knitted-cat-bottle-covers-zabelina/01.jpg"]}, {"id": "knitted-dragon-bottle-covers-zabelina", "name": "Knitted dragon bottle covers", "designer": "Zabelina", "craft": "knitting", "item": "bottle cover", "social": 0, "labelKey": "custom.waiting-knitted-dragon-bottle-covers-zabelina-Z4cer", "order": 999, "photos": ["img/knitted-dragon-bottle-covers-zabelina/01.jpg"]}, {"id": "korzhik-the-cat-ogol", "name": "Korzhik the cat", "designer": "Ogol", "craft": "crochet", "item": "toy", "social": 0, "labelKey": "custom.waiting-korzhik-the-cat-ogol-A5vi9", "order": 999, "photos": ["img/korzhik-the-cat-ogol/01.jpg", "img/korzhik-the-cat-ogol/02.jpg", "img/korzhik-the-cat-ogol/03.jpg", "img/korzhik-the-cat-ogol/04.jpg"]}, {"id": "lady-in-folk-costume-potholder-zabelina", "name": "Lady in folk costume potholder", "designer": "Zabelina", "craft": "crochet", "item": "potholder", "social": 0, "labelKey": "custom.waiting-lady-in-folk-costume-potholder-zabelina-l9NfC", "order": 999, "photos": ["img/lady-in-folk-costume-potholder-zabelina/01.jpg", "img/lady-in-folk-costume-potholder-zabelina/02.jpg", "img/lady-in-folk-costume-potholder-zabelina/03.jpg", "img/lady-in-folk-costume-potholder-zabelina/04.jpg"]}, {"id": "lighthouse-zabelina", "name": "Lighthouse", "designer": "Zabelina", "craft": "knitting", "item": "decoration", "social": 0, "labelKey": "custom.waiting-lighthouse-zabelina-QuqIq", "order": 999, "photos": ["img/lighthouse-zabelina/01.jpg"]}, {"id": "little-ghost-knittoy", "name": "Little ghost", "designer": "Knittoy", "craft": "crochet", "item": "keychain", "social": 0, "labelKey": "custom.waiting-little-ghost-knittoy-27CES", "order": 999, "photos": ["img/little-ghost-knittoy/01.jpg", "img/little-ghost-knittoy/02.jpg"]}, {"id": "little-spider-knittoy", "name": "Little spider", "designer": "Knittoy", "craft": "crochet", "item": "toy", "social": 0, "labelKey": "custom.waiting-little-spider-knittoy-ERKuY", "order": 999, "photos": ["img/little-spider-knittoy/01.jpg", "img/little-spider-knittoy/02.jpg"]}, {"id": "patchwork-potholders-zabelina", "name": "Patchwork potholders", "designer": "Zabelina", "craft": "crochet", "item": "potholder", "social": 0, "labelKey": "custom.waiting-patchwork-potholders-zabelina-kGkzA", "order": 999, "photos": ["img/patchwork-potholders-zabelina/01.jpg", "img/patchwork-potholders-zabelina/02.jpg", "img/patchwork-potholders-zabelina/03.jpg"]}, {"id": "pegasus-miguel-pertseva", "name": "Pegasus Miguel", "designer": "Pertseva", "craft": "crochet", "item": "toy", "social": 0, "labelKey": "custom.waiting-pegasus-miguel-pertseva-UsGv6", "order": 999, "photos": ["img/pegasus-miguel-pertseva/01.jpg", "img/pegasus-miguel-pertseva/02.jpg", "img/pegasus-miguel-pertseva/03.jpg", "img/pegasus-miguel-pertseva/04.jpg"]}, {"id": "sailor-zabelina", "name": "Sailor", "designer": "Zabelina", "craft": "knitting", "item": "toy", "social": 0, "labelKey": "custom.waiting-sailor-zabelina-YN0Ot", "order": 999, "photos": ["img/sailor-zabelina/01.jpg"]}, {"id": "seagulls-ogol", "name": "Seagulls", "designer": "Ogol", "craft": "crochet", "item": "toy", "social": 0, "labelKey": "custom.waiting-seagulls-ogol-jOEYc", "order": 999, "photos": ["img/seagulls-ogol/01.jpg", "img/seagulls-ogol/02.jpg", "img/seagulls-ogol/03.jpg"]}, {"id": "sheep-bag-zabelina", "name": "Sheep bag", "designer": "Zabelina", "craft": "crochet", "item": "bag", "social": 0, "labelKey": "custom.waiting-sheep-bag-zabelina-kYQq1", "order": 999, "photos": ["img/sheep-bag-zabelina/01.jpg", "img/sheep-bag-zabelina/02.jpg", "img/sheep-bag-zabelina/03.jpg", "img/sheep-bag-zabelina/04.jpg"]}, {"id": "sheep-bottle-covers-zabelina", "name": "Sheep bottle covers", "designer": "Zabelina", "craft": "crochet", "item": "bottle cover", "social": 0, "labelKey": "custom.waiting-sheep-bottle-covers-zabelina-fQfjZ", "order": 999, "photos": ["img/sheep-bottle-covers-zabelina/01.jpg", "img/sheep-bottle-covers-zabelina/02.jpg"]}, {"id": "sheep-head-baubles-zabelina", "name": "Sheep head baubles", "designer": "Zabelina", "craft": "knitting", "item": "decoration", "social": 0, "labelKey": "custom.waiting-sheep-head-baubles-zabelina-QphfV", "order": 999, "photos": ["img/sheep-head-baubles-zabelina/01.jpg", "img/sheep-head-baubles-zabelina/02.jpg", "img/sheep-head-baubles-zabelina/03.jpg"]}, {"id": "sheep-lady-zabelina", "name": "Sheep lady", "designer": "Zabelina", "craft": "knitting", "item": "toy", "social": 0, "labelKey": "custom.waiting-sheep-lady-zabelina-E1sY4", "order": 999, "photos": ["img/sheep-lady-zabelina/01.jpg", "img/sheep-lady-zabelina/02.jpg"]}, {"id": "sheep-lady-tea-cosy-zabelina", "name": "Sheep lady tea cosy", "designer": "Zabelina", "craft": "knitting", "item": "tea cosy", "social": 0, "labelKey": "custom.waiting-sheep-lady-tea-cosy-zabelina-5Suaz", "order": 999, "photos": ["img/sheep-lady-tea-cosy-zabelina/01.jpg", "img/sheep-lady-tea-cosy-zabelina/02.jpg"]}, {"id": "small-horse-toys-zabelina", "name": "Small horse toys", "designer": "Zabelina", "craft": "knitting", "item": "toy", "social": 0, "labelKey": "custom.waiting-small-horse-toys-zabelina-FCkxF", "order": 999, "photos": ["img/small-horse-toys-zabelina/01.jpg", "img/small-horse-toys-zabelina/02.jpg", "img/small-horse-toys-zabelina/03.jpg"]}, {"id": "small-round-sheep-zabelina", "name": "Small round sheep", "designer": "Zabelina", "craft": "knitting", "item": "toy", "social": 0, "labelKey": "custom.waiting-small-round-sheep-zabelina-DxR5q", "order": 999, "photos": ["img/small-round-sheep-zabelina/01.jpg", "img/small-round-sheep-zabelina/02.jpg", "img/small-round-sheep-zabelina/03.jpg", "img/small-round-sheep-zabelina/04.jpg", "img/small-round-sheep-zabelina/05.jpg"]}, {"id": "small-sheep-toys-zabelina", "name": "Small sheep toys", "designer": "Zabelina", "craft": "knitting", "item": "toy", "social": 0, "labelKey": "custom.waiting-small-sheep-toys-zabelina-4HWkl", "order": 999, "photos": ["img/small-sheep-toys-zabelina/01.jpg", "img/small-sheep-toys-zabelina/02.jpg", "img/small-sheep-toys-zabelina/03.jpg", "img/small-sheep-toys-zabelina/04.jpg"]}, {"id": "snakes-crochet-knitting-zabelina", "name": "Snakes (crochet & knitting)", "designer": "Zabelina", "craft": "crochet", "item": "toy / decoration", "social": 0, "labelKey": "custom.waiting-snakes-crochet-knitting-zabelina-2PYX8", "order": 999, "photos": ["img/snakes-crochet-knitting-zabelina/01.jpg", "img/snakes-crochet-knitting-zabelina/02.jpg", "img/snakes-crochet-knitting-zabelina/03.jpg"]}, {"id": "snegurochka-doll-zabelina", "name": "Snegurochka doll", "designer": "Zabelina", "craft": "knitting", "item": "toy", "social": 0, "labelKey": "custom.waiting-snegurochka-doll-zabelina-aU7bf", "order": 999, "photos": ["img/snegurochka-doll-zabelina/01.jpg", "img/snegurochka-doll-zabelina/02.jpg", "img/snegurochka-doll-zabelina/03.jpg"]}, {"id": "snowman-and-rabbit-ogol", "name": "Snowman and rabbit", "designer": "Ogol", "craft": "crochet", "item": "toy", "social": 0, "labelKey": "custom.waiting-snowman-and-rabbit-ogol-EqYT4", "order": 999, "photos": ["img/snowman-and-rabbit-ogol/01.jpg", "img/snowman-and-rabbit-ogol/02.jpg", "img/snowman-and-rabbit-ogol/03.jpg"]}, {"id": "stray-cat-ogol", "name": "Stray cat", "designer": "Ogol", "craft": "crochet", "item": "toy", "social": 0, "labelKey": "custom.waiting-stray-cat-ogol-KT2VE", "order": 999, "photos": ["img/stray-cat-ogol/01.jpg", "img/stray-cat-ogol/02.jpg", "img/stray-cat-ogol/03.jpg"]}, {"id": "striped-rabbit-pertseva", "name": "Striped rabbit", "designer": "Pertseva", "craft": "crochet", "item": "toy", "social": 0, "labelKey": "custom.waiting-striped-rabbit-pertseva-iaoyx", "order": 999, "photos": ["img/striped-rabbit-pertseva/01.jpg", "img/striped-rabbit-pertseva/02.jpg", "img/striped-rabbit-pertseva/03.jpg"]}, {"id": "tall-rabbit-ogol", "name": "Tall rabbit", "designer": "Ogol", "craft": "crochet", "item": "toy", "social": 0, "labelKey": "custom.waiting-tall-rabbit-ogol-8oCMv", "order": 999, "photos": ["img/tall-rabbit-ogol/01.jpg", "img/tall-rabbit-ogol/02.jpg", "img/tall-rabbit-ogol/03.jpg"]}, {"id": "teapot-potholders-zabelina", "name": "Teapot potholders", "designer": "Zabelina", "craft": "crochet", "item": "potholder", "social": 0, "labelKey": "custom.waiting-teapot-potholders-zabelina-GSMV3", "order": 999, "photos": ["img/teapot-potholders-zabelina/01.jpg", "img/teapot-potholders-zabelina/02.jpg", "img/teapot-potholders-zabelina/03.jpg", "img/teapot-potholders-zabelina/04.jpg", "img/teapot-potholders-zabelina/05.jpg"]}, {"id": "tiger-bottle-cover-zabelina", "name": "Tiger bottle cover", "designer": "Zabelina", "craft": "knitting", "item": "bottle cover", "social": 0, "labelKey": "custom.waiting-tiger-bottle-cover-zabelina-1sc4A", "order": 999, "photos": ["img/tiger-bottle-cover-zabelina/01.jpg", "img/tiger-bottle-cover-zabelina/02.jpg"]}, {"id": "tiger-head-potholder-zabelina", "name": "Tiger head potholder", "designer": "Zabelina", "craft": "crochet", "item": "potholder", "social": 0, "labelKey": "custom.waiting-tiger-head-potholder-zabelina-V4PZc", "order": 999, "photos": ["img/tiger-head-potholder-zabelina/01.jpg", "img/tiger-head-potholder-zabelina/02.jpg", "img/tiger-head-potholder-zabelina/03.jpg"]}];
+const GOAL = CONFIG.goal || 100;
+const $ = id => document.getElementById(id);
+const store = {
+  get(k, d){ try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } },
+  set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+};
+let device = store.get('soon.device', null);
+if (!device) { const a = new Uint8Array(18); crypto.getRandomValues(a); device = [...a].map(x => x.toString(36).padStart(2, '0')).join('').slice(0, 32); store.set('soon.device', device); }
+const state = { liked: new Set(store.get('soon.liked', [])), watching: new Set(), counts: {} };
+const count = p => state.counts[p.id] || 0;
+const rankOf = id => [...PATTERNS].sort((a, b) => count(b) - count(a)).findIndex(p => p.id === id) + 1;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const heartSvg = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2z"/></svg>';
+const grid = $('grid');
+
+function toast(msg){ const t = $('toast'); t.textContent = msg; t.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => t.hidden = true, 4500); }
+
+function cardHTML(p){
+  const n = count(p), done = n >= GOAL, rank = rankOf(p.id), pct = Math.min(100, Math.round(n / GOAL * 100));
+  const msg = done ? `<b>Goal reached!</b> It's in the publishing queue at <b>#${rank}</b>. More hearts move it up, so it's published sooner.`
+                   : `<b>${GOAL - n} more heart${GOAL - n === 1 ? '' : 's'}</b> needed to be considered for publishing (${n} of ${GOAL} hearts on this site). The more hearts, the sooner it's published.`;
+  const sub = [p.craft && p.craft[0].toUpperCase() + p.craft.slice(1), p.designer && 'by ' + p.designer].filter(Boolean).join(' · ');
+  const multi = p.photos.length > 1;
+  return `<article class="card ${state.watching.has(p.id) ? 'watching' : ''}" data-id="${p.id}">
+    <div class="car">
+      <div class="slides">${p.photos.map((u, i) => `<img class="slide" src="${u}" alt="${esc(p.name)}, photo ${i + 1}" loading="${i ? 'lazy' : 'eager'}" decoding="async">`).join('')}</div>
+      ${multi ? `<button class="arrow prev" data-dir="-1" aria-label="Previous photo">‹</button><button class="arrow next" data-dir="1" aria-label="Next photo">›</button><div class="dots">${p.photos.map((_, i) => `<i class="${i ? '' : 'on'}"></i>`).join('')}</div>` : ''}</div>
+    <div class="body">
+      <span class="tag ${done ? 'ok' : ''}">${done ? 'In the queue · #' + rank : '#' + rank + ' most wanted'}</span>
+      <div class="title"><h2>${esc(p.name)}<small>${esc(sub)}</small></h2>
+        <button class="heart" data-like="${p.id}" aria-pressed="${state.liked.has(p.id)}" aria-label="Heart ${esc(p.name)}, ${n} hearts">${heartSvg}<span>${n}</span></button></div>
+      ${p.social ? `<p class="social">Also ❤️ ${p.social} on Instagram &amp; Facebook (not counted towards the goal)</p>` : ''}
+      <div class="meter ${done ? 'done' : ''}"><div class="track"><div class="fill" style="width:${pct}%"></div></div><p>${msg}</p></div>
+      <label class="notify"><input type="checkbox" id="w-${p.id}" data-watch="${p.id}" ${state.watching.has(p.id) ? 'checked' : ''}> Email me when it's out</label>
+    </div></article>`;
+}
+function renderAll(){ grid.innerHTML = PATTERNS.map(cardHTML).join(''); renderBar(); }
+function refreshCard(id){
+  const p = PATTERNS.find(x => x.id === id), el = grid.querySelector(`[data-id="${id}"]`);
+  if (!el) return;
+  const scroll = el.querySelector('.slides').scrollLeft;
+  el.outerHTML = cardHTML(p);
+  grid.querySelector(`[data-id="${id}"] .slides`).scrollLeft = scroll;
+  grid.querySelectorAll('.tag').forEach(t => { const pid = t.closest('.card').dataset.id, pp = PATTERNS.find(x => x.id === pid), r = rankOf(pid), d = count(pp) >= GOAL; t.textContent = d ? 'In the queue · #' + r : '#' + r + ' most wanted'; });
+}
+function renderBar(){
+  const k = state.watching.size;
+  $('barText').textContent = k ? `You ticked ${k} pattern${k > 1 ? 's' : ''}. Leave your email and I'll tell you when ${k > 1 ? 'they come' : 'it comes'} out.` : `Tick "Email me" on any pattern to get a message when it comes out.`;
+  $('openSheet').disabled = !k;
+}
+
+// Cloudflare Turnstile: one fresh token per heart
+let tsWidget = null, tsWaiting = null;
+window.tsReady = () => {
+  tsWidget = turnstile.render('#ts', { sitekey: CONFIG.turnstileSiteKey, execution: 'execute', appearance: 'interaction-only',
+    callback: t => { tsWaiting && tsWaiting.resolve(t); tsWaiting = null; },
+    'error-callback': () => { tsWaiting && tsWaiting.reject(new Error('human-check')); tsWaiting = null; } });
+};
+function humanToken(){
+  return new Promise((resolve, reject) => {
+    if (!window.turnstile || tsWidget === null) return reject(new Error('human-check'));
+    tsWaiting = { resolve, reject };
+    turnstile.reset(tsWidget); turnstile.execute(tsWidget);
+    setTimeout(() => { if (tsWaiting) { tsWaiting.reject(new Error('timeout')); tsWaiting = null; } }, 30000);
+  });
+}
+
+async function setHeart(id, on){
+  const was = state.liked.has(id);
+  if (was === on) return;
+  on ? state.liked.add(id) : state.liked.delete(id);
+  state.counts[id] = Math.max(0, count({id}) + (on ? 1 : -1));
+  store.set('soon.liked', [...state.liked]); refreshCard(id);
+  if (CONFIG.preview) return;
+  try {
+    const token = on ? await humanToken() : '';
+    const r = await fetch(CONFIG.worker + '/heart', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ pattern: id, device, token, on }) });
+    const j = await r.json();
+    if (!r.ok) throw new Error(j.error || 'error');
+    state.counts[id] = j.count; refreshCard(id);
+  } catch (e) {
+    was ? state.liked.add(id) : state.liked.delete(id);
+    state.counts[id] = Math.max(0, count({id}) + (on ? -1 : 1));
+    store.set('soon.liked', [...state.liked]); refreshCard(id);
+    toast(e.message === 'limit' ? 'This connection has already given the most hearts allowed today. Thank you!' : 'Your heart could not be saved. Please try again in a moment.');
+  }
+}
+
+grid.addEventListener('click', e => {
+  const a = e.target.closest('.arrow');
+  if (a) { const sl = a.parentElement.querySelector('.slides'); sl.scrollBy({ left: sl.clientWidth * Number(a.dataset.dir) }); return; }
+  const b = e.target.closest('[data-like]');
+  if (b) setHeart(b.dataset.like, !state.liked.has(b.dataset.like)).then(() => grid.querySelector(`[data-like="${b.dataset.like}"]`)?.focus());
+});
+grid.addEventListener('change', e => {
+  const c = e.target.closest('[data-watch]'); if (!c) return;
+  const id = c.dataset.watch;
+  if (c.checked) { state.watching.add(id); refreshCard(id); if (!state.liked.has(id)) setHeart(id, true); } else { state.watching.delete(id); refreshCard(id); }
+  renderBar(); $('w-' + id)?.focus();
+});
+grid.addEventListener('scroll', e => {
+  const sl = e.target; if (!sl.classList || !sl.classList.contains('slides')) return;
+  const i = Math.round(sl.scrollLeft / sl.clientWidth);
+  sl.parentElement.querySelectorAll('.dots i').forEach((d, k) => d.classList.toggle('on', k === i));
+}, true);
+
+// Sign-up → Wix Form (contact + double opt-in; Wix Automation adds "Waiting: <pattern>" labels)
+const sheet = $('sheet');
+$('openSheet').onclick = () => {
+  $('chips').innerHTML = PATTERNS.filter(p => state.watching.has(p.id)).map(p => `<span class="chip">${esc(p.name)}</span>`).join('');
+  $('form').hidden = false; $('thanks').hidden = true; $('formErr').hidden = true; sheet.hidden = false; $('fname').focus();
+};
+$('cancel').onclick = () => { sheet.hidden = true; };
+$('close').onclick = () => { sheet.hidden = true; };
+$('lang').addEventListener('change', e => { const o = e.target.value === 'Other'; $('langOtherWrap').hidden = !o; if (o) $('langOther').focus(); });
+function formError(msg, focusId){ $('formErr').textContent = msg; $('formErr').hidden = false; if (focusId) $(focusId).focus(); }
+$('form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const email = $('email').value.trim(), email2 = $('email2').value.trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return formError('Please enter a valid email address.', 'email');
+  if (email.toLowerCase() !== email2.toLowerCase()) return formError("The two emails don't match. Please check for typos.", 'email2');
+  if (!$('consent').checked) return formError('Please tick the box to agree to the release emails.', 'consent');
+  const f = CONFIG.fields || {};
+  const sub = {};
+  sub[f.firstName] = $('fname').value.trim();
+  sub[f.email] = email;
+  sub[f.patterns] = PATTERNS.filter(p => state.watching.has(p.id)).map(p => p.labelKey || p.id);
+  if ($('lang').value) sub[f.language] = $('lang').value === 'Other' ? ($('langOther').value.trim() || 'Other') : $('lang').value;
+  sub[f.consent] = true;
+  if (CONFIG.preview) { $('form').hidden = true; $('thanks').hidden = false; return; }
+  $('submitBtn').disabled = true;
+  try {
+    const tok = await fetch('https://www.wixapis.com/oauth2/token', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ clientId: CONFIG.wixClientId, grantType: 'anonymous' }) }).then(r => r.json());
+    const r = await fetch('https://www.wixapis.com/form-submission-service/v4/submissions', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': tok.access_token },
+      body: JSON.stringify({ submission: { formId: CONFIG.formId, submissions: sub } }) });
+    if (!r.ok) throw new Error(await r.text());
+    $('form').hidden = true; $('thanks').hidden = false;
+  } catch (err) {
+    formError('Sorry, that did not go through. Please try again in a minute.');
+  } finally { $('submitBtn').disabled = false; }
+});
+
+// Load live heart counts, then show the most-wanted patterns first
+(async () => {
+  if (!CONFIG.preview) { try { state.counts = await fetch(CONFIG.worker + '/counts').then(r => r.json()); } catch {} }
+  PATTERNS.sort((a, b) => count(b) - count(a));
+  renderAll();
+})();
+renderAll();
+</script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=tsReady" async defer></script>
+
+</body>
+</html>
