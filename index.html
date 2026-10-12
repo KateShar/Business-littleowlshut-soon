@@ -268,10 +268,14 @@ async function setHeart(id, on){
   store.set('soon.liked', [...state.liked]); refreshCard(id);
   if (CONFIG.preview) return;
   try {
-    const token = on ? await humanToken() : '';
-    const r = await fetch(CONFIG.worker + '/heart', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ pattern: id, device, token, on }) });
-    const j = await r.json();
+    const send = async token => {
+      const r = await fetch(CONFIG.worker + '/heart', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ pattern: id, device, token, on, pass: store.get('soon.pass', '') }) });
+      return [r, await r.json()];
+    };
+    let [r, j] = await send('');
+    if (on && !r.ok && j.error === 'human-check') { store.set('soon.pass', ''); [r, j] = await send(await humanToken()); }
     if (!r.ok) throw new Error(j.error || 'error');
+    if (j.pass) store.set('soon.pass', j.pass);
     state.counts[id] = j.count; refreshCard(id);
   } catch (e) {
     was ? state.liked.add(id) : state.liked.delete(id);
