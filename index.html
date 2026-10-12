@@ -180,6 +180,19 @@ const grid = $('grid');
 
 function toast(msg){ const t = $('toast'); t.textContent = msg; t.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => t.hidden = true, 4500); }
 
+function bodyHTML(p){
+  const n = count(p), done = n >= GOAL, rank = rankOf(p.id), pct = Math.min(100, Math.round(n / GOAL * 100));
+  const msg = done ? `<b>Goal reached!</b> It's in the publishing queue at <b>#${rank}</b>. More hearts move it up, so it's published sooner.`
+                   : `<b>${GOAL - n} more heart${GOAL - n === 1 ? '' : 's'}</b> needed to be considered for publishing (${n} of ${GOAL} hearts on this site). The more hearts, the sooner it's published.`;
+  const sub = [p.craft && p.craft[0].toUpperCase() + p.craft.slice(1), p.designer && 'by ' + p.designer].filter(Boolean).join(' · ');
+  return `
+      <span class="tag ${done ? 'ok' : ''}">${done ? 'In the queue · #' + rank : '#' + rank + ' most wanted'}</span>
+      <div class="title"><h2>${esc(p.name)}<small>${esc(sub)}</small></h2>
+        <button class="heart" data-like="${p.id}" aria-pressed="${state.liked.has(p.id)}" aria-label="Heart ${esc(p.name)}, ${n} hearts">${heartSvg}<span>${n}</span></button></div>
+      ${p.social ? `<p class="social">Also ❤️ ${p.social} on Instagram &amp; Facebook (not counted towards the goal)</p>` : ''}
+      <div class="meter ${done ? 'done' : ''}"><div class="track"><div class="fill" style="width:${pct}%"></div></div><p>${msg}</p></div>
+      <label class="notify"><input type="checkbox" id="w-${p.id}" data-watch="${p.id}" ${state.watching.has(p.id) ? 'checked' : ''}> Email me when it's out</label>`;
+}
 function cardHTML(p){
   const n = count(p), done = n >= GOAL, rank = rankOf(p.id), pct = Math.min(100, Math.round(n / GOAL * 100));
   const msg = done ? `<b>Goal reached!</b> It's in the publishing queue at <b>#${rank}</b>. More hearts move it up, so it's published sooner.`
@@ -190,23 +203,15 @@ function cardHTML(p){
     <div class="car">
       <div class="slides">${p.photos.map((u, i) => `<img class="slide" src="${u}" alt="${esc(p.name)}, photo ${i + 1}" loading="${i ? 'lazy' : 'eager'}" decoding="async">`).join('')}</div>
       ${multi ? `<button class="arrow prev" data-dir="-1" aria-label="Previous photo">‹</button><button class="arrow next" data-dir="1" aria-label="Next photo">›</button><div class="dots">${p.photos.map((_, i) => `<i class="${i ? '' : 'on'}"></i>`).join('')}</div>` : ''}</div>
-    <div class="body">
-      <span class="tag ${done ? 'ok' : ''}">${done ? 'In the queue · #' + rank : '#' + rank + ' most wanted'}</span>
-      <div class="title"><h2>${esc(p.name)}<small>${esc(sub)}</small></h2>
-        <button class="heart" data-like="${p.id}" aria-pressed="${state.liked.has(p.id)}" aria-label="Heart ${esc(p.name)}, ${n} hearts">${heartSvg}<span>${n}</span></button></div>
-      ${p.social ? `<p class="social">Also ❤️ ${p.social} on Instagram &amp; Facebook (not counted towards the goal)</p>` : ''}
-      <div class="meter ${done ? 'done' : ''}"><div class="track"><div class="fill" style="width:${pct}%"></div></div><p>${msg}</p></div>
-      <label class="notify"><input type="checkbox" id="w-${p.id}" data-watch="${p.id}" ${state.watching.has(p.id) ? 'checked' : ''}> Email me when it's out</label>
-    </div></article>`;
+    <div class="body">${bodyHTML(p)}</div></article>`;
 }
 function renderAll(){ grid.innerHTML = PATTERNS.map(cardHTML).join(''); renderBar(); }
 function refreshCard(id){
   const p = PATTERNS.find(x => x.id === id), el = grid.querySelector(`[data-id="${id}"]`);
   if (!el) return;
-  const scroll = el.querySelector('.slides').scrollLeft;
-  el.outerHTML = cardHTML(p);
-  grid.querySelector(`[data-id="${id}"] .slides`).scrollLeft = scroll;
-  grid.querySelectorAll('.tag').forEach(t => { const pid = t.closest('.card').dataset.id, pp = PATTERNS.find(x => x.id === pid), r = rankOf(pid), d = count(pp) >= GOAL; t.textContent = d ? 'In the queue · #' + r : '#' + r + ' most wanted'; });
+  el.classList.toggle('watching', state.watching.has(id));
+  el.querySelector('.body').innerHTML = bodyHTML(p);
+  grid.querySelectorAll('.card').forEach(c => { const pp = PATTERNS.find(x => x.id === c.dataset.id), t = c.querySelector('.tag'), r = rankOf(pp.id), d = count(pp) >= GOAL; if (t) { t.textContent = d ? 'In the queue · #' + r : '#' + r + ' most wanted'; t.classList.toggle('ok', d); } });
 }
 function renderBar(){
   const k = state.watching.size;
@@ -221,7 +226,13 @@ window.tsReady = () => {
     callback: t => { tsWaiting && tsWaiting.resolve(t); tsWaiting = null; },
     'error-callback': () => { tsWaiting && tsWaiting.reject(new Error('human-check')); tsWaiting = null; } });
 };
+let tsQueue = Promise.resolve();
 function humanToken(){
+  const next = tsQueue.then(() => humanTokenOnce());
+  tsQueue = next.catch(() => {});
+  return next;
+}
+function humanTokenOnce(){
   return new Promise((resolve, reject) => {
     if (!window.turnstile || tsWidget === null) return reject(new Error('human-check'));
     tsWaiting = { resolve, reject };
