@@ -344,7 +344,13 @@ $('form').addEventListener('submit', async e => {
 
 // Load live heart counts, then show the most-wanted patterns first
 (async () => {
-  if (!CONFIG.preview) { try { state.counts = await fetch(CONFIG.worker + '/counts').then(r => r.json()); } catch {} }
+  if (!CONFIG.preview) {
+    try { state.counts = await fetch(CONFIG.worker + '/counts').then(r => r.json()); } catch {}
+    try {
+      const mine = await fetch(CONFIG.worker + '/mine?device=' + encodeURIComponent(device), { cache: 'no-store' }).then(r => r.json());
+      if (Array.isArray(mine)) { state.liked = new Set(mine); store.set('soon.liked', mine); }
+    } catch {}
+  }
   for (let i = PATTERNS.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [PATTERNS[i], PATTERNS[j]] = [PATTERNS[j], PATTERNS[i]]; } // neutral order: popularity doesn't steer anyone
   const want = decodeURIComponent(location.hash.slice(1));
   const wi = PATTERNS.findIndex(p => p.id === want);
