@@ -240,6 +240,7 @@ window.tsReady = () => {
     'before-interactive-callback': () => { $('tsbox').hidden = false; },
     'after-interactive-callback': () => { $('tsbox').hidden = true; },
     'error-callback': code => {
+      fetch(CONFIG.worker + '/report', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ kind: 'turnstile-error', detail: String(code) + (tsRetried ? ' (after retry)' : '') }) }).catch(() => {});
       if (tsWaiting && !tsRetried) { tsRetried = true; setTimeout(() => { turnstile.reset(tsWidget); turnstile.execute(tsWidget); }, 600); return true; }
       $('tsbox').hidden = true; tsWaiting && tsWaiting.reject(new Error('human-check ' + code)); tsWaiting = null; return true;
     },
@@ -282,6 +283,7 @@ async function setHeart(id, on){
     was ? state.liked.add(id) : state.liked.delete(id);
     state.counts[id] = Math.max(0, count({id}) + (on ? -1 : 1));
     store.set('soon.liked', [...state.liked]); refreshCard(id);
+    fetch(CONFIG.worker + '/report', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ kind: 'heart-failed', detail: e.message + ' pattern=' + id }) }).catch(() => {});
     toast(e.message === 'limit' ? 'This connection has already given the most hearts allowed today. Thank you!' : 'Your heart could not be saved. Please try again in a moment. (' + e.message + ')');
   }
 }
