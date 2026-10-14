@@ -177,7 +177,9 @@ let device = store.get('soon.device', null);
 if (!device) { const a = new Uint8Array(18); crypto.getRandomValues(a); device = [...a].map(x => x.toString(36).padStart(2, '0')).join('').slice(0, 32); store.set('soon.device', device); }
 const state = { liked: new Set(store.get('soon.liked', [])), watching: new Set(), counts: {} };
 const count = p => state.counts[p.id] || 0;
-const rankOf = id => [...PATTERNS].sort((a, b) => count(b) - count(a)).findIndex(p => p.id === id) + 1;
+// Equal hearts = equal rank: rank is 1 + the number of patterns with MORE hearts.
+const rankOf = id => { const n = count({ id }); return 1 + PATTERNS.filter(p => count(p) > n).length; };
+const isJoint = id => { const n = count({ id }); return PATTERNS.filter(p => count(p) === n).length > 1; };
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const heartSvg = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2z"/></svg>';
 const grid = $('grid');
@@ -186,13 +188,13 @@ function toast(msg){ const t = $('toast'); t.textContent = msg; t.hidden = false
 
 function tagText(p){
   if (!state.liked.has(p.id)) return 'Tap ❤️ if you want it';
-  const r = rankOf(p.id);
-  return count(p) >= GOAL ? 'In the queue · #' + r : '#' + r + ' most wanted';
+  const r = rankOf(p.id), j = isJoint(p.id) ? 'Joint ' : '';
+  return count(p) >= GOAL ? 'In the queue · ' + j + '#' + r : j + '#' + r + ' most wanted';
 }
 function bodyHTML(p){
   const liked = state.liked.has(p.id);
   const n = count(p), done = n >= GOAL, rank = rankOf(p.id), pct = Math.min(100, Math.round(n / GOAL * 100));
-  const msg = done ? `<b>Goal reached!</b> It's in the publishing queue at <b>#${rank}</b>. More hearts move it up, so it's published sooner.`
+  const msg = done ? `<b>Goal reached!</b> It's in the publishing queue at <b>${isJoint(p.id) ? 'joint ' : ''}#${rank}</b>. More hearts move it up, so it's published sooner.`
                    : `<b>${GOAL - n} more heart${GOAL - n === 1 ? '' : 's'}</b> needed to be considered for publishing (${n} of ${GOAL} hearts on this site). The more hearts, the sooner it's published.`;
   const sub = [p.craft && p.craft[0].toUpperCase() + p.craft.slice(1), p.designer && 'by ' + p.designer].filter(Boolean).join(' · ');
   const meter = liked
@@ -208,7 +210,7 @@ function bodyHTML(p){
 }
 function cardHTML(p){
   const n = count(p), done = n >= GOAL, rank = rankOf(p.id), pct = Math.min(100, Math.round(n / GOAL * 100));
-  const msg = done ? `<b>Goal reached!</b> It's in the publishing queue at <b>#${rank}</b>. More hearts move it up, so it's published sooner.`
+  const msg = done ? `<b>Goal reached!</b> It's in the publishing queue at <b>${isJoint(p.id) ? 'joint ' : ''}#${rank}</b>. More hearts move it up, so it's published sooner.`
                    : `<b>${GOAL - n} more heart${GOAL - n === 1 ? '' : 's'}</b> needed to be considered for publishing (${n} of ${GOAL} hearts on this site). The more hearts, the sooner it's published.`;
   const sub = [p.craft && p.craft[0].toUpperCase() + p.craft.slice(1), p.designer && 'by ' + p.designer].filter(Boolean).join(' · ');
   const multi = p.photos.length > 1;
@@ -278,7 +280,9 @@ async function setHeart(id, on){
     if (on && !r.ok && j.error === 'human-check') { store.set('soon.pass', ''); [r, j] = await send(await humanToken()); }
     if (!r.ok) throw new Error(j.error || 'error');
     if (j.pass) store.set('soon.pass', j.pass);
-    state.counts[id] = j.count; refreshCard(id);
+    state.counts[id] = j.count;
+    try { state.counts = await fetch(CONFIG.worker + '/counts', { cache: 'no-store' }).then(r => r.json()); } catch {}
+    refreshCard(id);
   } catch (e) {
     was ? state.liked.add(id) : state.liked.delete(id);
     state.counts[id] = Math.max(0, count({id}) + (on ? -1 : 1));
